@@ -23,8 +23,7 @@ buttons.forEach(button => {
         mangoAudio.play().catch((err) => {
             console.error("Error with audio: ", err);
         });
-        console.log("I understand it now");
-        console.log(chrome.runtime.getURL('assets/mangos.mp3'));
+        console.log("Mangooooo");
     });
 });
 
