@@ -8,11 +8,6 @@ const body = document.querySelector("body");
 const myPort = chrome.runtime.connect({name: "content-script-port"});
 myPort.postMessage({greeting: "message from content script"});
 
-myPort.onMessage.addListener((m) => {
-    console.log("message received from background script");
-    console.log(m.greeting);
-})
-
 body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
 // assets
 const mulchImage = chrome.runtime.getURL('assets/mulch2.jpeg');
@@ -31,7 +26,7 @@ buttons.forEach(button => {
         });
         // debug
         console.log("Spit on that thing");
-        myPort.postMessage({greeting: "spit on that thang!!"});
+        myPort.postMessage({brainrot_increment: 1});
     });
     // click button -> mango
     button.addEventListener('click', () => {
