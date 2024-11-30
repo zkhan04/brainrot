@@ -10,6 +10,9 @@
     ],
     "web_accessible_resources": [
         "assets/mango.png",
-        "assets/hawktuahTrim.mp3"
+        "assets/hawktuahTrim.mp3",
+        "assets/iunderstanditnow.mp3",
+        "assets/mangos.mp3",
+        "assets/aliens.mp3"
     ]
   }
