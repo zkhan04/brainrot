@@ -1,5 +1,7 @@
 const UPGRADE_STAGE_ALARM_NAME = "upgrade";
 
+const stages = ["omega", "gamma", "delta", "beta", "alpha", "sigma"];
+
 chrome.runtime.onInstalled.addListener(({reason}) => {
     console.log(reason);
     if (reason === 'install' || reason === 'update') {
@@ -23,8 +25,25 @@ async function createAlarm() {
 
 const updateStage = async () => {
     const current_stage = await chrome.storage.local.get("stage");
-    console.log(current_stage);
     chrome.storage.local.set({stage: current_stage.stage + 1});
 }
 
 chrome.alarms.onAlarm.addListener(updateStage);
+
+
+let content_script_port;
+const connected = (p) => {
+    content_script_port = p;
+    content_script_port.postMessage({greeting: "hello bro :P (from background script)"});
+    
+    content_script_port.onMessage.addListener((m) => {
+        content_script_port.postMessage({
+            greeting: `background script received this message: ${m.greeting}`
+        });
+    });
+
+    console.log("connected!")
+}
+
+chrome.runtime.onConnect.addListener(connected);
+
