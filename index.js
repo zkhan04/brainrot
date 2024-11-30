@@ -1,9 +1,11 @@
-const cssLink = document.createElement('linl');
+const cssLink = document.createElement('link');
 cssLink.rel = 'stylesheet';
 cssLink.href = chrome.runtime.getURL('style.css');
 document.head.appendChild(cssLink);
 
 const body = document.querySelector("body");
+
+
 
 body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
 // assets
