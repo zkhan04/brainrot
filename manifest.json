@@ -20,7 +20,11 @@
                 "assets/hawktuahTrim.mp3",
                 "assets/iunderstanditnow.mp3",
                 "assets/mangos.mp3",
-                "assets/aliens.mp3"
+                "assets/aliens.mp3",
+                "assets/mulch1.png",
+                "assets/mulch2.jpeg",
+                "assets/mulch.mp3",
+                "style.css"
             ],
             "matches": ["<all_urls>"]
         }
