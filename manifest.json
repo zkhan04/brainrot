@@ -9,6 +9,7 @@
         }
     ],
     "web_accessible_resources": [
-        "assets/mango.png"
+        "assets/mango.png",
+        "assets/hawktuahTrim.mp3"
     ]
   }
