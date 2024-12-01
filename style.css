@@ -49,3 +49,26 @@
     justify-content: center;
     align-items: center;
 }
+/*
+body {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.points-div {
+    width:50px;
+    height: 50px;
+    background-color: hotpink;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.pink-bg {
+    background-color: pink;
+}
+*/
