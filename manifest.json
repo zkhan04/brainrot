@@ -9,6 +9,10 @@
             "type": "module"
         }
     ],
+    "action": {
+        "default_popup": "shop/shop.html",
+        "default_icon": "assets/mango.png"
+    },
     "background": {
         "service_worker": "background.js"
     },
