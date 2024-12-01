@@ -37,16 +37,17 @@ const buttons = document.querySelectorAll("button")
 buttons.forEach(button => {
     // mouse over button -> hawk tuah
     button.addEventListener("mouseover", () => {
-        playHawkTuahAudio();
+        playAudio(hawkTuahAudio, "Spit on that thing");
+        myPort.postMessage({brainrot_increment: 1});
     });
     // click button -> zib zab zib zab
     button.addEventListener('click', () => {
-        playAliensAudio();
+        playAudio(aliensAudio, "Zib zab zib zab");
     });
     // mouse leaves button -> mulch gang for life
     button.addEventListener('mouseout', () => {
-        // displayMulchImageRandom();
-        displayLunchly();
+        // displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
+        displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
         // DisplayCostcoGuys();
     })
 });
@@ -62,16 +63,6 @@ function playAudio(audio, message, timeout=null) {
             audio.pause();
         }, timeout);
     }
-}
-
-// plays aliens audio
-function playAliensAudio() {
-    playAudio(aliensAudio, "Zib zab zib zab");
-}
-// plays hawk tuah audio
-function playHawkTuahAudio() {
-    playAudio(hawkTuahAudio, "Spit on that thing");
-    myPort.postMessage({brainrot_increment: 1});
 }
 
 function playMulchAudio() {
@@ -149,15 +140,6 @@ function displayCostcoGuys() {
 function displayBalkanRage() {
     displayImage(balkanRageImage, "balkan-image", 5000);
 }
-
-// lunchly image
-function displayLunchly() {
-    displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
-}
-
-function displayMulchImageRandom() {
-    displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
-};
 
 /*
 function RedOverlay(lunchlyImage) {
