@@ -45,8 +45,8 @@ buttons.forEach(button => {
     });
     // mouse leaves button -> mulch gang for life
     button.addEventListener('mouseout', () => {
-        // mulchImageRandom();
-        DisplayLunchly();
+        // displayMulchImageRandom();
+        displayLunchly();
         // DisplayCostcoGuys();
     })
 });
@@ -69,7 +69,7 @@ function playHawkTuahAudio() {
     console.log("Spit on that thing");
     myPort.postMessage({brainrot_increment: 1});
 }
-function PlayMulchAudio() {
+function playMulchAudio() {
     mulchAudio.currentTime = 0;
     mulchAudio.play().catch((err) => {
         console.error("Error with audio: ", err);
@@ -77,26 +77,7 @@ function PlayMulchAudio() {
     console.log("Mulch gang for life!!!");
 }
 
-// function that pops out with the mulch image
-function mulchImageRandom() {
-    const image = document.createElement('img');
-    image.src = mulchImage;
-    image.className = 'mulch-image';
-
-    PlayMulchAudio();
-
-    console.log("Mulch image URL: ", mulchImage);
-
-    document.body.appendChild(image);
-    // image is gone after 5 seconds
-    setTimeout(()=> {
-        image.remove();
-    }, 5000);
-};
-
-
-
-function costcoAudio() {
+function playCostcoAudio() {
     costcoBoomAudio.currentTime = 0;
     costcoBoomAudio.play().catch((err) => {
         console.error("Error with audio: ", err);
@@ -107,7 +88,7 @@ function costcoAudio() {
     }, 6000);
 }
 
-function PlayMangoAudio() {
+function playMangoAudio() {
     mangoAudio.currentTime = 0;
     mangoAudio.play().catch((err) => {
         console.error("Error with audio: ", err);
@@ -118,8 +99,45 @@ function PlayMangoAudio() {
     }, 5000);
 }
 
+function playThickOfIt() {
+    thickofItAudio.currentTime = 0;
+    thickofItAudio.play().catch((err) => {
+        console.error("Error with audio: ", err);
+    });
+    console.log("I'm in the thick of it");
+    setTimeout(() => {
+        thickofItAudio.pause();
+    }, 6000);
+}
+
+// vine boom audio
+function playVineBoom() {
+    vineAudio.currentTime = 0;
+    vineAudio.play().catch((err) => {
+        console.error("Error with audio: ", err);
+    });
+    console.log("How nostalgic");
+    setTimeout(()=> {
+        vineAudio.pause();
+    }, 4000);
+}
+
+// i just lost my dawg audio 
+function playLostDogAudio() {
+    lostDawgAudio.currentTime = 0;
+    lostDawgAudio.play().catch((err) => {
+        console.error("Error with audio: ", err);
+    });
+    // debug
+    console.log("I just lost my dawggggg. No more Rod Wave");
+    setTimeout(()=> {
+        lostDawgAudio.pause();
+    }, 5000);
+    myPort.postMessage({brainrot_increment: 1});
+}
+
 // displays costco guys and rizzler images 
-function DisplayCostcoGuys() {
+function displayCostcoGuys() {
     const costGuysImage = document.createElement('img');
     const rizzlerImage = document.createElement('img');
 
@@ -146,7 +164,7 @@ function DisplayCostcoGuys() {
     }, 3000);
 }
 // balkan rage image 
-function DisplayBalkanRage() {
+function displayBalkanRage() {
     const Balkanimage = document.createElement('img');
     Balkanimage.src = balkanRageImage;
     Balkanimage.className = 'balkan-image';
@@ -160,49 +178,14 @@ function DisplayBalkanRage() {
         Balkanimage.remove();
     }, 5000);
 }
-// vine boom audio
-function PlayVineBoom() {
-    vineAudio.currentTime = 0;
-    vineAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("How nostalgic");
-    setTimeout(()=> {
-        vineAudio.pause();
-    }, 4000);
-}
-// i just lost my dawg audio 
-function PlayLostDogAudio() {
-    lostDawgAudio.currentTime = 0;
-    lostDawgAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    // debug
-    console.log("I just lost my dawggggg. No more Rod Wave");
-    setTimeout(()=> {
-        lostDawgAudio.pause();
-    }, 5000);
-    myPort.postMessage({brainrot_increment: 1});
-}
-// thick of it audio 
-function PlayThickOfIt() {
-    thickofItAudio.currentTime = 0;
-    thickofItAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("I'm in the thick of it");
-    setTimeout(() => {
-        thickofItAudio.pause();
-    }, 6000);
-}
-// lunchly image
 
-function DisplayLunchly() {
+// lunchly image
+function displayLunchly() {
     const lunchlyImg = document.createElement('img');
     lunchlyImg.src = lunchlyImage;
     lunchlyImg.className = 'lunchly-image';
 
-    PlayThickOfIt();
+    playThickOfIt();
 
     console.log("Ewww mold, thank you Mr.Beast");
     console.log("Lunchly image: ", lunchlyImage);
@@ -212,6 +195,22 @@ function DisplayLunchly() {
         lunchlyImg.remove();
     }, 6000);
 }
+
+function displayMulchImageRandom() {
+    const image = document.createElement('img');
+    image.src = mulchImage;
+    image.className = 'mulch-image';
+
+    playMulchAudio();
+
+    console.log("Mulch image URL: ", mulchImage);
+
+    document.body.appendChild(image);
+    // image is gone after 5 seconds
+    setTimeout(()=> {
+        image.remove();
+    }, 5000);
+};
 
 /*
 function RedOverlay(lunchlyImage) {
