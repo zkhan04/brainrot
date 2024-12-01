@@ -37,106 +37,79 @@ const buttons = document.querySelectorAll("button")
 buttons.forEach(button => {
     // mouse over button -> hawk tuah
     button.addEventListener("mouseover", () => {
-        playHawkTuahAudio();
+        playAudio(hawkTuahAudio, "Spit on that thing");
+        myPort.postMessage({brainrot_increment: 1});
     });
     // click button -> zib zab zib zab
     button.addEventListener('click', () => {
-        playAliensAudio();
+        playAudio(aliensAudio, "Zib zab zib zab");
     });
     // mouse leaves button -> mulch gang for life
     button.addEventListener('mouseout', () => {
-        // displayMulchImageRandom();
-        displayLunchly();
+        // displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
+        displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
         // DisplayCostcoGuys();
     })
 });
-// plays aliens audio
-function playAliensAudio() {
-    aliensAudio.currentTime = 0;
-    aliensAudio.play().catch((err) => {
+
+function playAudio(audio, message, timeout=null) {
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
         console.error("Error with audio: ", err);
     });
-    console.log("Zib zab zib zab");
+    console.log(message);
+    if (timeout) {
+        setTimeout(() => {
+            audio.pause();
+        }, timeout);
+    }
 }
-// plays hawk tuah audio
-function playHawkTuahAudio() {
-    // Hawk tuah spit on that thing :3
-    hawkTuahAudio.currentTime = 0;
-    hawkTuahAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    // debug
-    console.log("Spit on that thing");
-    myPort.postMessage({brainrot_increment: 1});
-}
+
 function playMulchAudio() {
-    mulchAudio.currentTime = 0;
-    mulchAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("Mulch gang for life!!!");
+    playAudio(mulchAudio, "Mulch gang for life!!!");
 }
 
 function playCostcoAudio() {
-    costcoBoomAudio.currentTime = 0;
-    costcoBoomAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("WE BRING THE BOOMMM");
-    setTimeout(()=> {
-        costcoAudio.pause();
-    }, 6000);
+    playAudio(costcoBoomAudio, "WE BRING THE BOOMMM", 6000);
 }
 
 function playMangoAudio() {
-    mangoAudio.currentTime = 0;
-    mangoAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("balkan rage german stare mexican wave jamaican smile");
-    setTimeout(()=> {
-        mangoAudio.pause();
-    }, 5000);
+    playAudio(mangoAudio, "balkan rage german stare mexican wave jamaican smile", 5000);
 }
 
 function playThickOfIt() {
-    thickofItAudio.currentTime = 0;
-    thickofItAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("I'm in the thick of it");
-    setTimeout(() => {
-        thickofItAudio.pause();
-    }, 6000);
+    playAudio(thickofItAudio, "I'm in the thick of it", 6000);
 }
 
 // vine boom audio
 function playVineBoom() {
-    vineAudio.currentTime = 0;
-    vineAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    console.log("How nostalgic");
-    setTimeout(()=> {
-        vineAudio.pause();
-    }, 4000);
+    playAudio(vineAudio, "How nostalgic", 4000);
 }
 
 // i just lost my dawg audio 
 function playLostDogAudio() {
-    lostDawgAudio.currentTime = 0;
-    lostDawgAudio.play().catch((err) => {
-        console.error("Error with audio: ", err);
-    });
-    // debug
-    console.log("I just lost my dawggggg. No more Rod Wave");
-    setTimeout(()=> {
-        lostDawgAudio.pause();
-    }, 5000);
+    playAudio(lostDawgAudio, "I just lost my dawggggg. No more Rod Wave", 5000);
     myPort.postMessage({brainrot_increment: 1});
 }
 
+function displayImage(imagePath, className, timeout, audioCallback=null) {
+    const image = document.createElement('img');
+    image.src = imagePath;
+    image.className = className;
+
+    if (audioCallback) {
+        audioCallback();
+    }
+
+    document.body.appendChild(image);
+    // image and audio are gone after 5 seconds
+    setTimeout(()=> {
+        image.remove();
+    }, timeout);
+}
+
 // displays costco guys and rizzler images 
+// this is a unique one, not gonna bother trying to abstract it lol
 function displayCostcoGuys() {
     const costGuysImage = document.createElement('img');
     const rizzlerImage = document.createElement('img');
@@ -165,52 +138,8 @@ function displayCostcoGuys() {
 }
 // balkan rage image 
 function displayBalkanRage() {
-    const Balkanimage = document.createElement('img');
-    Balkanimage.src = balkanRageImage;
-    Balkanimage.className = 'balkan-image';
-
-    
-    console.log("Balkan rage: ", balkanRageImage);
-
-    document.body.appendChild(Balkanimage);
-    // image and audio are gone after 5 seconds
-    setTimeout(()=> {
-        Balkanimage.remove();
-    }, 5000);
+    displayImage(balkanRageImage, "balkan-image", 5000);
 }
-
-// lunchly image
-function displayLunchly() {
-    const lunchlyImg = document.createElement('img');
-    lunchlyImg.src = lunchlyImage;
-    lunchlyImg.className = 'lunchly-image';
-
-    playThickOfIt();
-
-    console.log("Ewww mold, thank you Mr.Beast");
-    console.log("Lunchly image: ", lunchlyImage);
-
-    document.body.appendChild(lunchlyImg);
-    setTimeout(()=> {
-        lunchlyImg.remove();
-    }, 6000);
-}
-
-function displayMulchImageRandom() {
-    const image = document.createElement('img');
-    image.src = mulchImage;
-    image.className = 'mulch-image';
-
-    playMulchAudio();
-
-    console.log("Mulch image URL: ", mulchImage);
-
-    document.body.appendChild(image);
-    // image is gone after 5 seconds
-    setTimeout(()=> {
-        image.remove();
-    }, 5000);
-};
 
 /*
 function RedOverlay(lunchlyImage) {
