@@ -1,0 +1,32 @@
+body {
+    width: 500px; /* Set desired width (max 800px) */
+    height: 300px; /* Optional: Adjust height */
+    margin: 0;     /* Remove default margin for full use of space */
+    padding: 10px; /* Optional padding for styling */
+    box-sizing: border-box; /* Ensure padding doesn't add to width */
+
+    /* css grid properties */
+    display: grid;
+    grid-template-rows: 50px 20px auto;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+
+.points {
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+
+.shop {
+    grid-row-start: 3;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    align-self: start;
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

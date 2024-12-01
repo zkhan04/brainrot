@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(({reason}) => {
     console.log(reason);
-    if (reason === 'install' || reason === 'update') {
+    if (reason === 'install') {
         chrome.storage.local.set({
             brainrot_points: 0
         });
