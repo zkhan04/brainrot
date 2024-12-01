@@ -24,6 +24,14 @@
                 "assets/mulch1.png",
                 "assets/mulch2.jpeg",
                 "assets/mulch.mp3",
+                "assets/Costco.jpeg",
+                "assets/costcoGuys.mp3",
+                "assets/therizzler.gif",
+                "assets/balkanRage.jpeg",
+                "assets/justlostmydawg.mp3",
+                "assets/vine.mp3",
+                "assets/thickofit.mp3",
+                "assets/lunchly.jpeg",
                 "style.css"
             ],
             "matches": ["<all_urls>"]
