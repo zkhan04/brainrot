@@ -164,5 +164,60 @@ function RedOverlay(lunchlyImage) {
 
 }
 */
+// list of common brainrot words
+const brainrotWords = [
+    "rizz", "skibidi", "gyatt", "fanum tax", "sigma", "huzz", "rizzler", "aura", "ohio",
+    "english or spanish", "aura", "hawk tuah", "talk tuah", "alpha", "put the fries in the bag"
+]
+// random brainrot word
+function getRandomBrainrotWord() {
+    const randomIndex = Math.floor(Math.random() * brainrotWords.length);
+    return brainrotWords[randomIndex]
+}
+// replaces text on page
+function replaceTextOnPage(from, to){
+    getAllTextNodes().forEach(function(node){
+      node.nodeValue = node.nodeValue.replace(new RegExp(quote(from), 'g'), to);
+    });
+  
+    function getAllTextNodes(){
+      var result = [];
+
+      // to not mess up with other elements on page
+
+      const excludedTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "IGRAME", "TEXTAREA", "INPUT", "BUTTON"]);
+  
+      (function scanSubTree(node){
+        if(node.nodeType == Node.TEXT_NODE) {
+            if(!excludedTags.has(node.parentNode.tagName)) {
+                result.push(node);
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE && !excludedTags.has(node.tagName)) {
+            for(var i = 0; i < node.childNodes.length; i++) 
+                scanSubTree(node.childNodes[i]);
+        }
+        /*
+        if(node.childNodes.length) 
+          for(var i = 0; i < node.childNodes.length; i++) 
+            scanSubTree(node.childNodes[i]);
+        else if(node.nodeType == Node.TEXT_NODE) 
+          result.push(node);
+        */
+      })(document.body);
+  
+      return result;
+    }
+    function quote(str){
+      return (str+'').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+    }
+  }
+// common words getting replaced with brainrot 
+replaceTextOnPage('and', getRandomBrainrotWord());
+replaceTextOnPage('or', 'aura');
+replaceTextOnPage('the', getRandomBrainrotWord());
+replaceTextOnPage('an', getRandomBrainrotWord());
+replaceTextOnPage('he', 'rizzler');
+replaceTextOnPage('she', 'huzz');
+replaceTextOnPage('they', 'ohio');
 
 
