@@ -88,6 +88,86 @@ function activateHawkTuahAudio() {
     })
 }
 
+function activateAliensAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(aliensAudio, "Zib zab zib zab", 5000);
+        })
+    })
+}
+
+function activateVineAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            playAudio(vineAudio, "How nostalgic", 4000);
+        })
+    })
+}
+
+function activateLostDawgAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(lostDawgAudio, "I just lost my dawggggg. No more Rod Wave", 5000);
+        })
+    })
+}
+
+function activateMustardAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(hawkTuahAudio, "spit on that thang!");
+        })
+    })
+}
+
+function activateDiddyAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(hawkTuahAudio, "spit on that thang!");
+        })
+    })
+}
+
+function activateMulchImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
+        })
+    })
+}
+
+function activateKneeSurgeryImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayImage(kneeSurgeryImage, "knee-surgery", 5000, playKneeSurgery);
+        })
+    })
+}
+
+function activateBalkanRageImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayImage(balkanRageImage, "balkan-image", 5000, playMangoAudio);
+        })
+    })
+}
+
+function activateCostcoGuysImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayCostcoGuys();
+        })
+    })
+}
+
+function activateSubwaySurfersVideo() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displaySubwaySurfers();
+        })
+    })
+}
+
 function activateCursorListener() {
     body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
 }
