@@ -37,6 +37,9 @@
                 "assets/thickofit.mp3",
                 "assets/lunchly.jpeg",
                 "assets/subway_surfers.mp4",
+                "assets/knee_surgery.jpeg",
+                "assets/knee_surgery.mp3",
+                "assets/diddy_audio.mp3",
                 "style.css"
             ],
             "matches": ["<all_urls>"]
