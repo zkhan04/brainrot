@@ -1,5 +1,21 @@
 const body = document.querySelector("body");
 
+const buttons = document.querySelectorAll("button")
+buttons.forEach(button => {
+    // mouse over button -> hawk tuah
+    button.addEventListener("mouseover", () => {
+        myPort.postMessage({brainrot_increment: 1});
+    });
+});
+
+const effectActivationFunctions = {
+    "hawk tuah audio": activateHawkTuahAudio,
+    "mango cursor": activateCursorListener
+};
+
+// assets
+const hawkTuahAudio = new Audio(chrome.runtime.getURL('assets/hawktuahTrim.mp3'));
+
 // create port for communicating with background script(s)
 const myPort = chrome.runtime.connect({name: "dumb-script-port"});
 
@@ -23,17 +39,38 @@ cssLink.rel = 'stylesheet';
 cssLink.href = chrome.runtime.getURL('style.css');
 document.head.appendChild(cssLink);
 
-const buttons = document.querySelectorAll("button")
-buttons.forEach(button => {
-    // mouse over button -> hawk tuah
-    button.addEventListener("mouseover", () => {
-        myPort.postMessage({brainrot_increment: 1});
-    });
-});
 
-function activateCursorListener(m) {
+
+function activateHawkTuahAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            playAudio(hawkTuahAudio, "spit on that thang!");
+        })
+    })
+}
+
+function playAudio(audio, message, timeout=null) {
+    audio.currentTime = 0;
+    audio.play().catch((err) => {
+        console.error("Error with audio: ", err);
+    });
+    console.log(message);
+    if (timeout) {
+        setTimeout(() => {
+            audio.pause();
+        }, timeout);
+    }
+}
+
+function shopMessageListener(m) {
+    const effect = m.effect;
     appendToStorage("effects", m.effect);
+
+    effectActivationFunctions[effect]();
+}
+
+function activateCursorListener() {
     body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
 }
 
-myPort.onMessage.addListener((m) => activateCursorListener(m))
+myPort.onMessage.addListener((m) => shopMessageListener(m));
