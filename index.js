@@ -107,14 +107,119 @@ function shopMessageListener(m) {
 // ----------------------------------------------EDIT STUFF FROM HERE-------------------------------------
 // dict for easily calling activation functions
 const effectActivationFunctions = {
-    // ADD EFFECT NAMES, AND WHICH ACTIVATION FUNCTION YOU WANNA CALL
-    // example:
     "mango cursor": activateMangoCursor,
+    "hawk tuah audio": activateHawkTuahAudio,
+    "aliens audio": activateAliensAudio,
+    "mulch image": activateMulchImage,
+    "lunchly image": activateLunchlyImage,
+    "subway surfers": activateSubwaySurfers,
+    "costco guys": activateCostcoGuys,
+    "balkan rage": activateBalkanRage
 };
 
 // ----------------------------------------------ACTIVATION FUNCTIONS-------------------------------------
 function activateMangoCursor() {
     body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
+}
+
+function activateSubwaySurfers() {
+    buttons.forEach(button => {
+        button.addEventListener(() => {
+            displaySubwaySurfers();
+        })
+    })
+}
+
+function activateHawkTuahAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            playAudio(hawkTuahAudio, "spit on that thang!");
+        })
+    })
+}
+
+function activateAliensAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(aliensAudio, "Zib zab zib zab");
+        })
+    })
+}
+
+function activateBalkanRage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            body.style.backgroundImage = `url(${balkanRageImage})`;
+        })
+        button.addEventListener("mouseout", () => {
+            body.style.backgroundImage = "";
+        })
+    })
+}
+
+function activateCostcoGuys() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            body.style.backgroundImage = `url(${costcoGuysImg})`;
+        })
+        button.addEventListener("mouseout", () => {
+            body.style.backgroundImage = "";
+        })
+    })
+}
+
+function activateLunchly() {
+    buttons.forEach(button => {
+        button.addEventListener('mouseout', () => {
+            displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
+        })
+    })
+}
+
+function activateVine() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(vineAudio, "Vine gang for life!");
+        })
+    })
+}
+
+function activateThickOfIt() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(thickofItAudio, "Thick of it");
+        })
+    })
+}
+
+function activateLostDawg() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(lostDawgAudio, "Just lost my dawg");
+        })
+    })
+}
+
+function activateKneeSurgery() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            body.style.backgroundImage = `url(${kneeSurgeryImage})`;
+        })
+        button.addEventListener("mouseout", () => {
+            body.style.backgroundImage = "";
+        })
+    })
+}
+
+function activateReplaceWords() {
+    // common words getting replaced with brainrot 
+    replaceTextOnPage('and', getRandomBrainrotWord());
+    replaceTextOnPage('or', 'aura');
+    replaceTextOnPage('the', getRandomBrainrotWord());
+    replaceTextOnPage('an', getRandomBrainrotWord());
+    replaceTextOnPage('he', 'rizzler');
+    replaceTextOnPage('she', 'huzz');
+    replaceTextOnPage('they', 'ohio');
 }
 
 // ----------------------------------------------HELPER FUNCTIONS-----------------------------------------
@@ -317,14 +422,7 @@ function replaceTextOnPage(from, to){
       return (str+'').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
     }
   }
-// common words getting replaced with brainrot 
-replaceTextOnPage('and', getRandomBrainrotWord());
-replaceTextOnPage('or', 'aura');
-replaceTextOnPage('the', getRandomBrainrotWord());
-replaceTextOnPage('an', getRandomBrainrotWord());
-replaceTextOnPage('he', 'rizzler');
-replaceTextOnPage('she', 'huzz');
-replaceTextOnPage('they', 'ohio');
+
 
 myPort.onMessage.addListener((m) => shopMessageListener(m));
 // apply effects that should already be there
