@@ -4,6 +4,9 @@ chrome.runtime.onInstalled.addListener(({reason}) => {
         chrome.storage.local.set({
             brainrot_points: 0
         });
+        chrome.storage.local.set({
+            effects: []
+        });
     }
 });
 
@@ -45,6 +48,7 @@ function contentScriptListener(m) {
 }
 
 function shopScriptListener(m) {
+    // add it to list of effects
     content_script_port.postMessage({"effect": m.effect});
     console.log(m.effect);
 }

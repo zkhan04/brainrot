@@ -3,6 +3,20 @@ const body = document.querySelector("body");
 // create port for communicating with background script(s)
 const myPort = chrome.runtime.connect({name: "dumb-script-port"});
 
+async function appendToStorage(key, item) {
+    const result = await chrome.storage.local.get(key);
+    let currentList;
+    if (result[key]) {
+        currentList = result[key]
+    } else {
+        currentList = []
+    }
+
+    currentList.push(item);
+
+    await chrome.storage.local.set({[key]: currentList});
+}
+
 // link CSS stylesheet
 const cssLink = document.createElement('link');
 cssLink.rel = 'stylesheet';
@@ -18,7 +32,7 @@ buttons.forEach(button => {
 });
 
 function activateCursorListener(m) {
-    console.log("received message!")
+    appendToStorage("effects", m.effect);
     body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
 }
 
