@@ -3,6 +3,8 @@
     top: 50%;
     left: 50%;
     z-index: 9999;
+    width: 300px;
+    height: 300px;
     transform: translate(-50%, -50%);
 }
 .balkan-image {
@@ -14,13 +16,24 @@
     height: 200px;
     transform: translate(-50%, -50%);
 }
+.knee-surgery {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+}
 .costco-image {
     position: fixed;
     top: 50%;
     left: 50%;
     z-index: 9999;
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     transform: translate(-50%, -50%);
 }
 .rizzler-gif {
@@ -34,6 +47,8 @@
     position: fixed;
     top: 50%;
     left: 50%;
+    height: 200px;
+    width: 200px;
     z-index: 9999;
     transform: translate(-50%, -50%);
 }
@@ -49,3 +64,36 @@
     justify-content: center;
     align-items: center;
 }
+.subway_surfers-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;  
+    height: 600px;
+    z-index: 9999; 
+}
+
+/*
+body {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.points-div {
+    width:50px;
+    height: 50px;
+    background-color: hotpink;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.pink-bg {
+    background-color: pink;
+}
+*/

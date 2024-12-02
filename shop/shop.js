@@ -8,7 +8,9 @@ const body = document.querySelector("body");
 
 // shows the user amount of points they have
 const pointsDiv = document.createElement("div");
+
 pointsDiv.classList.add("points");
+
 body.appendChild(pointsDiv);
 
 // adds a brainrot effect to the shop

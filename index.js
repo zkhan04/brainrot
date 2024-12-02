@@ -23,6 +23,11 @@ const vineAudio = new Audio(chrome.runtime.getURL('assets/vine.mp3'));
 const lostDawgAudio = new Audio(chrome.runtime.getURL('assets/justlostmydawg.mp3'));
 const thickofItAudio = new Audio(chrome.runtime.getURL('assets/thickofit.mp3'));
 const lunchlyImage = chrome.runtime.getURL('assets/lunchly.jpeg');
+const kneeSurgeryImage = chrome.runtime.getURL('assets/knee_surgery.jpeg');
+const kneeSurgeryAudio = new Audio(chrome.runtime.getURL('assets/knee_surgery.mp3'));
+const diddyAudio = new Audio(chrome.runtime.getURL('assets/diddy_audio.mp3'));
+const mustardAudio = new Audio(chrome.runtime.getURL('assets/mustard.mp3'));
+
 
 // turns the cursor into mango trollface
 body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
@@ -47,7 +52,8 @@ buttons.forEach(button => {
     // mouse leaves button -> mulch gang for life
     button.addEventListener('mouseout', () => {
         // displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
-        displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
+        // displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
+        displaySubwaySurfers();
         // DisplayCostcoGuys();
     })
 });
@@ -63,6 +69,18 @@ function playAudio(audio, message, timeout=null) {
             audio.pause();
         }, timeout);
     }
+}
+
+function playDiddyAudio() {
+    playAudio(diddyAudio, "Why they recommending me Diddy");
+}
+
+function playMustardAudio() {
+    playAudio(mustardAudio, "MUSTARDDDDD");
+}
+
+function playKneeSurgery() {
+    playAudio(kneeSurgeryAudio, "That feeling when :3");
 }
 
 function playMulchAudio() {
@@ -106,6 +124,34 @@ function displayImage(imagePath, className, timeout, audioCallback=null) {
     setTimeout(()=> {
         image.remove();
     }, timeout);
+}
+
+function displaySubwaySurfers() {
+
+    const subwaySurfersVideo = document.createElement("video");
+    const videoPath = chrome.runtime.getURL("assets/subway_surfers.mp4");
+    subwaySurfersVideo.setAttribute("src", videoPath);
+    subwaySurfersVideo.setAttribute("autoplay", "true");
+    subwaySurfersVideo.setAttribute("muted", "true");
+   
+    subwaySurfersVideo.className = 'subway_surfers-video';
+
+    subwaySurfersVideo.onerror = () => {
+        console.error("Video failed to load. Check the URL and file format.");
+    };
+
+    console.log(chrome.runtime.getURL("assets/subway_surfers.mp4"));
+
+
+    document.body.appendChild(subwaySurfersVideo);
+
+    setTimeout(() => {
+        subwaySurfersVideo.remove()
+    }, 9000);
+}
+
+function displayKneeSurgery() {
+    displayImage(kneeSurgeryImage, "knee-surgery", 5000);
 }
 
 // displays costco guys and rizzler images 
@@ -164,5 +210,60 @@ function RedOverlay(lunchlyImage) {
 
 }
 */
+// list of common brainrot words
+const brainrotWords = [
+    "rizz", "skibidi", "gyatt", "fanum tax", "sigma", "huzz", "rizzler", "aura", "ohio",
+    "english or spanish", "aura", "hawk tuah", "talk tuah", "alpha", "put the fries in the bag"
+]
+// random brainrot word
+function getRandomBrainrotWord() {
+    const randomIndex = Math.floor(Math.random() * brainrotWords.length);
+    return brainrotWords[randomIndex]
+}
+// replaces text on page
+function replaceTextOnPage(from, to){
+    getAllTextNodes().forEach(function(node){
+      node.nodeValue = node.nodeValue.replace(new RegExp(quote(from), 'g'), to);
+    });
+  
+    function getAllTextNodes(){
+      var result = [];
+
+      // to not mess up with other elements on page
+
+      const excludedTags = new Set(["SCRIPT", "STYLE", "NOSCRIPT", "IGRAME", "TEXTAREA", "INPUT", "BUTTON"]);
+  
+      (function scanSubTree(node){
+        if(node.nodeType == Node.TEXT_NODE) {
+            if(!excludedTags.has(node.parentNode.tagName)) {
+                result.push(node);
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE && !excludedTags.has(node.tagName)) {
+            for(var i = 0; i < node.childNodes.length; i++) 
+                scanSubTree(node.childNodes[i]);
+        }
+        /*
+        if(node.childNodes.length) 
+          for(var i = 0; i < node.childNodes.length; i++) 
+            scanSubTree(node.childNodes[i]);
+        else if(node.nodeType == Node.TEXT_NODE) 
+          result.push(node);
+        */
+      })(document.body);
+  
+      return result;
+    }
+    function quote(str){
+      return (str+'').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+    }
+  }
+// common words getting replaced with brainrot 
+replaceTextOnPage('and', getRandomBrainrotWord());
+replaceTextOnPage('or', 'aura');
+replaceTextOnPage('the', getRandomBrainrotWord());
+replaceTextOnPage('an', getRandomBrainrotWord());
+replaceTextOnPage('he', 'rizzler');
+replaceTextOnPage('she', 'huzz');
+replaceTextOnPage('they', 'ohio');
 
 
