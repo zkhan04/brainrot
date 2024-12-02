@@ -28,7 +28,7 @@ let shop_script_port;
 const connected = (p) => {
     port = p;
 
-    if (p.name === "dumb-script-port") {
+    if (p.name === "content-script-port") {
         content_script_port = p;
         content_script_port.onMessage.addListener((m) => {
             contentScriptListener(m);

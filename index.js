@@ -1,14 +1,3 @@
-const body = document.querySelector("body");
-
-// create port for communicating with background script(s)
-const myPort = chrome.runtime.connect({name: "content-script-port"});
-
-// link CSS stylesheet
-const cssLink = document.createElement('link');
-cssLink.rel = 'stylesheet';
-cssLink.href = chrome.runtime.getURL('style.css');
-document.head.appendChild(cssLink);
-
 // assets
 const mulchImage = chrome.runtime.getURL('assets/mulch2.jpeg');
 const hawkTuahAudio = new Audio(chrome.runtime.getURL('assets/hawktuahTrim.mp3'));
@@ -28,36 +17,107 @@ const kneeSurgeryAudio = new Audio(chrome.runtime.getURL('assets/knee_surgery.mp
 const diddyAudio = new Audio(chrome.runtime.getURL('assets/diddy_audio.mp3'));
 const mustardAudio = new Audio(chrome.runtime.getURL('assets/mustard.mp3'));
 
+// create port for communicating with background script(s)
+const myPort = chrome.runtime.connect({name: "content-script-port"});
+
+const body = document.querySelector("body");
+const buttons = document.querySelectorAll("button")
+
+// link CSS stylesheet
+const cssLink = document.createElement('link');
+cssLink.rel = 'stylesheet';
+cssLink.href = chrome.runtime.getURL('style.css');
+document.head.appendChild(cssLink);
 
 // turns the cursor into mango trollface
-body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
+//body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
 
-// confirm audio can be played
-document.addEventListener('click', () => {
-    console.log("Clicked paged, audio is allowed!");
-});
+// // confirm audio can be played
+// document.addEventListener('click', () => {
+//     console.log("Clicked paged, audio is allowed!");
+// });
 
 // silly stuff that happens when interacting with buttons
-const buttons = document.querySelectorAll("button")
+
+// buttons.forEach(button => {
+//     // mouse over button -> hawk tuah
+//     button.addEventListener("mouseover", () => {
+//         playAudio(hawkTuahAudio, "Spit on that thing");
+//         myPort.postMessage({brainrot_increment: 1});
+//     });
+//     // click button -> zib zab zib zab
+//     button.addEventListener('click', () => {
+//         playAudio(aliensAudio, "Zib zab zib zab");
+//     });
+//     // mouse leaves button -> mulch gang for life
+//     button.addEventListener('mouseout', () => {
+//         // displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
+//         // displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
+//         displaySubwaySurfers();
+//         // DisplayCostcoGuys();
+//     })
+// });
+
+
+// -----------------------------------------------BACKEND STUFF (MOSTLY)----------------------------------
+// for getting brainrot points
 buttons.forEach(button => {
-    // mouse over button -> hawk tuah
+    // mouse over button -> increment brainrot
     button.addEventListener("mouseover", () => {
-        playAudio(hawkTuahAudio, "Spit on that thing");
         myPort.postMessage({brainrot_increment: 1});
     });
-    // click button -> zib zab zib zab
-    button.addEventListener('click', () => {
-        playAudio(aliensAudio, "Zib zab zib zab");
-    });
-    // mouse leaves button -> mulch gang for life
-    button.addEventListener('mouseout', () => {
-        // displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
-        // displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
-        displaySubwaySurfers();
-        // DisplayCostcoGuys();
-    })
 });
 
+
+
+// applies all brainrot effects in storage
+async function applyEffects() {
+    const allEffects = await chrome.storage.local.get("effects");
+    if (allEffects.effects) {
+        allEffects.effects.forEach((effect) => {
+            effectActivationFunctions[effect]();
+        })
+    }
+}
+
+
+// if a list is in storage, add to the list
+async function appendToStorage(key, item) {
+    const result = await chrome.storage.local.get(key);
+    let currentList;
+    if (result[key]) {
+        currentList = result[key]
+    } else {
+        currentList = []
+    }
+
+    currentList.push(item);
+
+    await chrome.storage.local.set({[key]: currentList});
+}
+
+// handles messages from the shop
+function shopMessageListener(m) {
+    const effect = m.effect;
+    appendToStorage("effects", m.effect);
+
+    effectActivationFunctions[effect]();
+}
+
+// ----------------------------------------------EDIT STUFF FROM HERE-------------------------------------
+// dict for easily calling activation functions
+const effectActivationFunctions = {
+    // ADD EFFECT NAMES, AND WHICH ACTIVATION FUNCTION YOU WANNA CALL
+    // example:
+    "mango cursor": activateMangoCursor,
+};
+
+// ----------------------------------------------ACTIVATION FUNCTIONS-------------------------------------
+function activateMangoCursor() {
+    body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
+}
+
+// ----------------------------------------------HELPER FUNCTIONS-----------------------------------------
 function playAudio(audio, message, timeout=null) {
     audio.currentTime = 0;
     audio.play().catch((err) => {
@@ -265,5 +325,9 @@ replaceTextOnPage('an', getRandomBrainrotWord());
 replaceTextOnPage('he', 'rizzler');
 replaceTextOnPage('she', 'huzz');
 replaceTextOnPage('they', 'ohio');
+
+myPort.onMessage.addListener((m) => shopMessageListener(m));
+// apply effects that should already be there
+applyEffects();
 
 
