@@ -40,6 +40,7 @@
                 "assets/knee_surgery.jpeg",
                 "assets/knee_surgery.mp3",
                 "assets/diddy_audio.mp3",
+                "assets/mustard.mp3",
                 "style.css"
             ],
             "matches": ["<all_urls>"]
