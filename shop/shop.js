@@ -46,8 +46,10 @@ function createShopItem(effect_name, points) {
 // current list of effects!
 const effects = {
     "mango cursor": 100,
-    "text replacement": 200,
-    "hawk tuah audio": 300,
+    "aliens audio": 150,
+    "subway surfers": 200,
+    "vine audio": 250,
+    "replace words": 300,
 }
 
 // holds all the shop effects

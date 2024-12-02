@@ -108,78 +108,22 @@ function shopMessageListener(m) {
 // dict for easily calling activation functions
 const effectActivationFunctions = {
     "mango cursor": activateMangoCursor,
-    "hawk tuah audio": activateHawkTuahAudio,
     "aliens audio": activateAliensAudio,
-    "mulch image": activateMulchImage,
-    "lunchly image": activateLunchlyImage,
-    "subway surfers": activateSubwaySurfers,
-    "costco guys": activateCostcoGuys,
-    "balkan rage": activateBalkanRage
+    "subway surfers": activateSubwaySurfersVideo,
+    "vine audio": activateVineAudio,
+    "replace words": activateReplaceWords,
 };
 
 // ----------------------------------------------ACTIVATION FUNCTIONS-------------------------------------
+// activation functions--------------------------------------------
 function activateMangoCursor() {
     body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
-}
-
-function activateSubwaySurfers() {
-    buttons.forEach(button => {
-        button.addEventListener(() => {
-            displaySubwaySurfers();
-        })
-    })
-}
-
-function activateHawkTuahAudio() {
-    buttons.forEach(button => {
-        button.addEventListener("mouseover", () => {
-            playAudio(hawkTuahAudio, "spit on that thang!");
-        })
-    })
-}
-
-function activateAliensAudio() {
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            playAudio(aliensAudio, "Zib zab zib zab");
-        })
-    })
-}
-
-function activateBalkanRage() {
-    buttons.forEach(button => {
-        button.addEventListener("mouseover", () => {
-            body.style.backgroundImage = `url(${balkanRageImage})`;
-        })
-        button.addEventListener("mouseout", () => {
-            body.style.backgroundImage = "";
-        })
-    })
-}
-
-function activateCostcoGuys() {
-    buttons.forEach(button => {
-        button.addEventListener("mouseover", () => {
-            body.style.backgroundImage = `url(${costcoGuysImg})`;
-        })
-        button.addEventListener("mouseout", () => {
-            body.style.backgroundImage = "";
-        })
-    })
 }
 
 function activateLunchly() {
     buttons.forEach(button => {
         button.addEventListener('mouseout', () => {
             displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
-        })
-    })
-}
-
-function activateVine() {
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            playAudio(vineAudio, "Vine gang for life!");
         })
     })
 }
@@ -192,24 +136,95 @@ function activateThickOfIt() {
     })
 }
 
-function activateLostDawg() {
+
+function activateHawkTuahAudio() {
     buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            playAudio(lostDawgAudio, "Just lost my dawg");
+        button.addEventListener("mouseover", () => {
+            playAudio(hawkTuahAudio, "spit on that thang!");
         })
     })
 }
 
-function activateKneeSurgery() {
+function activateAliensAudio() {
     buttons.forEach(button => {
-        button.addEventListener("mouseover", () => {
-            body.style.backgroundImage = `url(${kneeSurgeryImage})`;
-        })
-        button.addEventListener("mouseout", () => {
-            body.style.backgroundImage = "";
+        button.addEventListener("click", () => {
+            playAudio(aliensAudio, "Zib zab zib zab", 5000);
         })
     })
 }
+
+function activateVineAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseover", () => {
+            playAudio(vineAudio, "How nostalgic", 4000);
+        })
+    })
+}
+
+function activateLostDawgAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(lostDawgAudio, "I just lost my dawggggg. No more Rod Wave", 5000);
+        })
+    })
+}
+
+function activateMustardAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(hawkTuahAudio, "spit on that thang!");
+        })
+    })
+}
+
+function activateDiddyAudio() {
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            playAudio(diddyAudio, "Why they recommending me diddy!");
+        })
+    })
+}
+
+function activateMulchImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
+        })
+    })
+}
+
+function activateKneeSurgeryImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayImage(kneeSurgeryImage, "knee-surgery", 5000, playKneeSurgery);
+        })
+    })
+}
+
+function activateBalkanRageImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayImage(balkanRageImage, "balkan-image", 5000, playMangoAudio);
+        })
+    })
+}
+
+function activateCostcoGuysImage() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displayCostcoGuys();
+        })
+    })
+}
+
+function activateSubwaySurfersVideo() {
+    buttons.forEach(button => {
+        button.addEventListener("mouseout", () => {
+            displaySubwaySurfers();
+        })
+    })
+}
+
 
 function activateReplaceWords() {
     // common words getting replaced with brainrot 
