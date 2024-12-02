@@ -74,7 +74,7 @@ body.appendChild(shopDiv);
 async function loadPointsDiv() {
     const pointsInfo = await chrome.storage.local.get("brainrot_points");
     currentPoints = pointsInfo.brainrot_points;
-    pointsDiv.innerHTML = "current points: " + currentPoints;
+    pointsDiv.innerHTML = "Hello there, broke fein! current points: " + currentPoints;
 }
 
 // updates the display of our # of points (done when we buy something)
