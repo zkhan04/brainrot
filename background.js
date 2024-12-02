@@ -16,17 +16,20 @@ const updateStage = async (brainrot_increment) => {
 }
 
 let content_script_port;
+let shop_script_port;
 const connected = (p) => {
     port = p;
 
-    if (p.name === "content-script-port") {
-        p.onMessage.addListener((m) => {
+    if (p.name === "dumb-script-port") {
+        content_script_port = p;
+        content_script_port.onMessage.addListener((m) => {
             contentScriptListener(m);
         })
     }
 
     else if (p.name === "shop-script-port") {
-        p.onMessage.addListener((m) => {
+        shop_script_port = p;
+        shop_script_port.onMessage.addListener((m) => {
             shopScriptListener(m);
         })
     }
@@ -42,5 +45,6 @@ function contentScriptListener(m) {
 }
 
 function shopScriptListener(m) {
+    content_script_port.postMessage({"effect": m.effect});
     console.log(m.effect);
 }
