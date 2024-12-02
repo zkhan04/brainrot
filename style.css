@@ -14,6 +14,17 @@
     height: 200px;
     transform: translate(-50%, -50%);
 }
+.knee-surgery {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    z-index: 9999;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+}
 .costco-image {
     position: fixed;
     top: 50%;
@@ -49,6 +60,16 @@
     justify-content: center;
     align-items: center;
 }
+.subway_surfers-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;  
+    height: 200px;
+    z-index: 9999; 
+}
+
 /*
 body {
     text-align: center;

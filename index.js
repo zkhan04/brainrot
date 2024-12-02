@@ -23,6 +23,11 @@ const vineAudio = new Audio(chrome.runtime.getURL('assets/vine.mp3'));
 const lostDawgAudio = new Audio(chrome.runtime.getURL('assets/justlostmydawg.mp3'));
 const thickofItAudio = new Audio(chrome.runtime.getURL('assets/thickofit.mp3'));
 const lunchlyImage = chrome.runtime.getURL('assets/lunchly.jpeg');
+const kneeSurgeryImage = chrome.runtime.getURL('assets/knee_surgery.jpeg');
+const kneeSurgeryAudio = new Audio(chrome.runtime.getURL('assets/knee_surgery.mp3'));
+const diddyAudio = new Audio(chrome.runtime.getURL('assets/diddy_audio.mp3'));
+const mustardAudio = new Audio(chrome.runtime.getURL('assets/mustard.mp3'));
+
 
 // turns the cursor into mango trollface
 body.style.cursor = `url(${chrome.runtime.getURL('assets/mango.png')}),auto`
@@ -47,7 +52,8 @@ buttons.forEach(button => {
     // mouse leaves button -> mulch gang for life
     button.addEventListener('mouseout', () => {
         // displayImage(mulchImage, "mulch-image", 5000, playMulchAudio);
-        displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
+        // displayImage(lunchlyImage, "lunchly-image", 6000, playThickOfIt);
+        displaySubwaySurfers();
         // DisplayCostcoGuys();
     })
 });
@@ -63,6 +69,18 @@ function playAudio(audio, message, timeout=null) {
             audio.pause();
         }, timeout);
     }
+}
+
+function playDiddyAudio() {
+    playAudio(diddyAudio, "Why they recommending me Diddy");
+}
+
+function playMustardAudio() {
+    playAudio(mustardAudio, "MUSTARDDDDD");
+}
+
+function playKneeSurgery() {
+    playAudio(kneeSurgeryAudio, "That feeling when :3");
 }
 
 function playMulchAudio() {
@@ -106,6 +124,34 @@ function displayImage(imagePath, className, timeout, audioCallback=null) {
     setTimeout(()=> {
         image.remove();
     }, timeout);
+}
+
+function displaySubwaySurfers() {
+
+    const subwaySurfersVideo = document.createElement("video");
+    const videoPath = chrome.runtime.getURL("assets/subway_surfers.mp4");
+    subwaySurfersVideo.setAttribute("src", videoPath);
+    subwaySurfersVideo.setAttribute("autoplay", "true");
+    subwaySurfersVideo.setAttribute("muted", "true");
+   
+    subwaySurfersVideo.className = 'subway_surfers-video';
+
+    subwaySurfersVideo.onerror = () => {
+        console.error("Video failed to load. Check the URL and file format.");
+    };
+
+    console.log(chrome.runtime.getURL("assets/subways_surfers.mp4"));
+
+
+    document.body.appendChild(subwaySurfersVideo);
+
+    setTimeout(() => {
+        subwaySurfersVideo.remove()
+    }, 9000);
+}
+
+function displayKneeSurgery() {
+    displayImage(kneeSurgeryImage, "knee-surgery", 5000);
 }
 
 // displays costco guys and rizzler images 
