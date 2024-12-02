@@ -140,7 +140,7 @@ function displaySubwaySurfers() {
         console.error("Video failed to load. Check the URL and file format.");
     };
 
-    console.log(chrome.runtime.getURL("assets/subways_surfers.mp4"));
+    console.log(chrome.runtime.getURL("assets/subway_surfers.mp4"));
 
 
     document.body.appendChild(subwaySurfersVideo);
