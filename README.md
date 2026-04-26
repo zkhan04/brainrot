@@ -31,3 +31,9 @@ You can check our Devpost submission here: [Devpost](https://devpost.com/softwar
 **Brainrot Word Replacer**
 
 <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/165/437/datas/original.png" alt="Brainrot Word Replacer in effect!" width="500">
+
+**Video**
+
+
+[![Brainrot Extension Video](https://www.youtube.com/watch?v=lquaLrI6YPk)](https://www.youtube.com/watch?v=lquaLrI6YPk)
+
