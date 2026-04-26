@@ -29,7 +29,3 @@ brainrot is a Chrome extension that transforms your tab into a brainrot wonderla
 **Brainrot Word Replacer**
 
 <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/165/437/datas/original.png" alt="Brainrot Word Replacer in effect!" width="500">
-
-
-
-https://devpost.com/software/brainrot-extension
