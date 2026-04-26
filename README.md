@@ -1,6 +1,8 @@
 # brainrot
 
-brainrot is a Chrome extension that transforms your tab into a brainrot wonderland with "brainrot" points. Earn points by interacting with web elements and spend them in the shop to trigger chaotic effects. This was a submission for the jia.seed Brainrot Hackathon. You can check our Devpost submission here: [Devpost](https://devpost.com/software/brainrot-extension)
+brainrot is a Chrome extension that transforms your tab into a brainrot wonderland with "brainrot" points. Earn points by interacting with web elements and spend them in the shop to trigger chaotic effects. We built this extension with HTML, CSS, Javascript, and Chrome Extension API. Building this extension allowed for our creativity to flow and it was super fun. This was a submission for the jia.seed Brainrot Hackathon.
+
+You can check our Devpost submission here: [Devpost](https://devpost.com/software/brainrot-extension)
 
 **Features**:
 - Point system: earn brainrot points by hovering over buttons and interacting with pages.
